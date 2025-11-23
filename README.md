@@ -33,8 +33,8 @@ The Document Request System is a web-based application built with Laravel that s
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/jerryjaner/DocumentRequestSystem.git
-   cd DocumentRequestSystem
+   git clone https://github.com/escardabernadette21-svg/sorsudocreq.git
+   cd sorsudocreq
 
 2. **Install Backend Dependencies:**
    ```bash
