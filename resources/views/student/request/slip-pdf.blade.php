@@ -51,30 +51,89 @@
         .mt-3 { margin-top: 15px; }
         .mt-4 { margin-top: 20px; }
 
-        table {
+        /* table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 10px;
-        }
+        } */
 
-        th, td {
+        /* th, td {
             border: 1px solid #ccc;
             padding: 6px;
             text-align: left;
             font-size: 12px;
-        }
+        } */
 
-        th {
+        /* th {
             background-color: #f8f8f8;
-        }
+        } */
 
         .note {
             font-size: 11px;
             color: #555;
         }
+
+
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            page-break-inside: auto;
+        }
+
+        th, td {
+            border: 1px solid #000;
+            padding: 4px; /* smaller padding to fit content */
+            text-align: center;
+            vertical-align: top; /* top align for long content */
+            word-wrap: break-word;
+        }
+
+        th {
+            background: #f2f2f2;
+            font-size: 9px;
+        }
+
+        td {
+            font-size: 9px;
+        }
+
+        /* Prevent breaking table rows across pages */
+        tr {
+            page-break-inside: avoid;
+            page-break-after: auto;
+        }
+
+        /* Header logos */
+        .header-table td {
+            border: none !important;
+        }
+
+        .logo {
+            width: 70px;
+            height: auto;
+        }
     </style>
 </head>
 <body>
+     <table class="header-table" style="width: 600px; margin: 20px auto 10px auto;">
+        <tr>
+            <td style="width: 70px; vertical-align: middle;">
+                <img src="{{ public_path('user/assets/media/logos/ssu-logo.png') }}" alt="Left Logo" class="logo">
+            </td>
+            <td style="text-align: center; font-size: 12px; line-height: 1.2; vertical-align: middle;">
+                <div>Republic of the Philippines</div>
+                <div><strong>Sorsogon State University</strong></div>
+                <div><strong>OFFICE OF THE REGISTRAR</strong></div>
+                <div><strong>Bulan Campus</strong></div>
+                <div><em>Zone 8, Bulan, Sorsogon</em></div>
+                <div>Tel. No.: (056) 311-9800; Email Address: registrar.bc@sorsu.edu.ph</div>
+            </td>
+            <td style="width: 70px; vertical-align: middle;">
+                <img src="{{ public_path('user/assets/media/logos/ssu-logo-2.png') }}" alt="Right Logo" class="logo">
+            </td>
+        </tr>
+    </table>
     <div class="container">
         <h3 class="text-center fw-bold">ORDER PAYMENT SLIP</h3>
         <p class="text-center mb-3" style="font-size: 13px;">PRESENT TO CASHIER</p>

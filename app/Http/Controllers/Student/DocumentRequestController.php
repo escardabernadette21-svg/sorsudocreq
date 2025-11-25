@@ -99,7 +99,7 @@ class DocumentRequestController extends Controller
                 'user_id'          => $user->id,
                 'studentname'      => $request->studentname,
                 'student_id'       => $request->student_id,
-                'student_type'     => $request->student_type,
+                'student_type' => strtolower($request->student_type),
                 'year'             => $request->year ?? null,
                 'batch_year'       => $request->batch_year ?? null,
                 'course'           => $request->course,

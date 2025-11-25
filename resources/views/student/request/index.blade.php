@@ -33,7 +33,7 @@
                                 <label class="form-label">Student Type <span class="text-danger">*</span></label>
                                 <input type="text" name="student_type"
                                     class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
-                                    value="{{ Auth::user()->student_type }}" placeholder="Student Type" readonly />
+                                    value="{{ ucwords(Auth::user()->student_type )}}" placeholder="Student Type" readonly />
                             </div>
                         </div>
 

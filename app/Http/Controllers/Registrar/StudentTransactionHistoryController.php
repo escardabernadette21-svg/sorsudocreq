@@ -106,95 +106,60 @@ class StudentTransactionHistoryController extends Controller
     }
 
 
-    // public function download(Request $request)
-    // {
-    //     $query = DocumentRequest::with(['items', 'payment'])
-    //         ->whereNotNull('claimed_date');
+    public function download(Request $request)
+    {
+        $query = DocumentRequest::with(['items', 'payment'])
+            ->whereNotNull('claimed_date');
 
-    //     // Filter by student type
-    //     if ($request->filled('student_type')) {
-    //         $query->where('student_type', $request->student_type);
-    //     }
-
-    //     // Filter by batch year
-    //     if ($request->filled('batch_year')) {
-    //         $query->where('batch_year', $request->batch_year);
-    //     }
-
-    //     // Filter by course
-    //     if ($request->filled('course')) {
-    //         $query->where('course', $request->course);
-    //     }
-
-    //     $transaction_history = $query->get();
-
-    //     // If no results
-    //     if ($transaction_history->isEmpty()) {
-    //         if ($request->ajax()) {
-    //             return response()->json([
-    //                 'success' => false,
-    //                 'message' => 'No transaction history found for the selected filters.'
-    //             ]);
-    //         }
-    //         return back()->with('error', 'No transaction history found for the selected filters.');
-    //     }
-
-    //     // If AJAX, just confirm success
-    //     if ($request->ajax()) {
-    //         return response()->json(['success' => true]);
-    //     }
-
-    //     // Generate PDF
-    //     $pdf = Pdf::loadView('registrar.report.transaction-history-download', compact('transaction_history'))
-    //         ->setPaper('a4', 'landscape');
-
-    //     return $pdf->download('transaction_history.pdf');
-    // }
-public function download(Request $request)
-{
-    $query = DocumentRequest::with(['items', 'payment'])
-        ->whereNotNull('claimed_date');
-
-    // Student Type Filter
-    if ($request->filled('student_type') && $request->student_type !== 'All') {
-        $query->where('student_type', $request->student_type);
-    }
-
-    // Year Level Filter (for enrolled students)
-    if ($request->filled('year') && $request->year !== 'All') {
-        $query->where('year', $request->year);
-    }
-
-    // Batch Year Filter (for alumni)
-    if ($request->filled('batch_year') && $request->batch_year !== 'All') {
-        $query->where('batch_year', $request->batch_year);
-    }
-
-    // Course Filter
-    if ($request->filled('course') && $request->course !== 'All') {
-        $query->where('course', $request->course);
-    }
-
-    $transaction_history = $query->get();
-
-    if ($transaction_history->isEmpty()) {
-        if ($request->ajax()) {
-            return response()->json([
-                'success' => false,
-                'message' => 'No transaction history found for the selected filters.'
-            ]);
+        // Student Type Filter
+        if ($request->filled('student_type') && $request->student_type !== 'All') {
+            $query->where('student_type', $request->student_type);
         }
-        return back()->with('error', 'No transaction history found for the selected filters.');
+
+        // Year Level Filter (for enrolled students)
+        if ($request->filled('year') && $request->year !== 'All') {
+            $query->where('year', $request->year);
+        }
+
+        // Batch Year Filter (for alumni)
+        if ($request->filled('batch_year') && $request->batch_year !== 'All') {
+            $query->where('batch_year', $request->batch_year);
+        }
+
+        // Course Filter
+        if ($request->filled('course') && $request->course !== 'All') {
+            $query->where('course', $request->course);
+        }
+
+        //Date Range Filter
+        if ($request->filled('from_date')) {
+        $query->whereDate('claimed_date', '>=', $request->from_date);
+        }
+
+        if ($request->filled('to_date')) {
+            $query->whereDate('claimed_date', '<=', $request->to_date);
+        }
+
+        $transaction_history = $query->get();
+
+        if ($transaction_history->isEmpty()) {
+            if ($request->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'No transaction history found for the selected filters.'
+                ]);
+            }
+            return back()->with('error', 'No transaction history found for the selected filters.');
+        }
+
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
+
+        $pdf = Pdf::loadView('registrar.report.transaction-history-download', compact('transaction_history'))
+            ->setPaper('a4', 'landscape');
+
+        return $pdf->download('transaction_history.pdf');
     }
-
-    if ($request->ajax()) {
-        return response()->json(['success' => true]);
-    }
-
-    $pdf = Pdf::loadView('registrar.report.transaction-history-download', compact('transaction_history'))
-        ->setPaper('a4', 'landscape');
-
-    return $pdf->download('transaction_history.pdf');
-}
 
 }

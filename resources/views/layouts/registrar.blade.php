@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title> @yield('title')</title>
-    <link rel="shortcut icon" href="{{ URL::to('registrar/assets/img/logo.png') }}">
+    <link rel="shortcut icon" href="{{ URL::to('registrar/assets/img/sorsu-logo.png') }}">
     <link rel="stylesheet" href="{{ URL::to('registrar/assets/plugins/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ URL::to('registrar/assets/plugins/feather/feather.css') }}">
     <link rel="stylesheet" href="{{ URL::to('registrar/assets/plugins/icons/flags/flags.css') }}">

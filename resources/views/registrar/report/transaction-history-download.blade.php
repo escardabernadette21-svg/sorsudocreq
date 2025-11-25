@@ -71,7 +71,7 @@
                 <div><strong>OFFICE OF THE REGISTRAR</strong></div>
                 <div><strong>Bulan Campus</strong></div>
                 <div><em>Zone 8, Bulan, Sorsogon</em></div>
-                <div>Tel. No.: (056) 311-98-00; Email Address: registrar.bc@sorsu.edu.ph</div>
+                <div>Tel. No.: (056) 311-9800; Email Address: registrar.bc@sorsu.edu.ph</div>
             </td>
             <td style="width: 70px; vertical-align: middle;">
                 <img src="{{ public_path('registrar/assets/img/sorsu_logo_2.png') }}" alt="Right Logo" class="logo">

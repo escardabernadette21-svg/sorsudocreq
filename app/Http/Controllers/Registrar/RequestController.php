@@ -43,7 +43,10 @@ class RequestController extends Controller
                                     <th>Student ID</th>
                                     <th>Reference Number</th>
                                     <th>Student Name</th>
-                                    <th>Year & Course</th>
+                                    <th>Student Type</th>
+                                    <th>Course</th>
+                                    <th>Year Level</th>
+                                    <th>Batch Year</th>
                                     <th>Requested Date</th>
                                     <th>Purpose</th>
                                     <th>Status</th>
@@ -89,7 +92,10 @@ class RequestController extends Controller
                                 <td>' . $data->student_id . '</td>
                                 <td>' . $data->reference_number . '</td>
                                 <td>' . $data->studentname . '</td>
-                                <td>' . $data->year . ' ' . $data->course . '</td>
+                                <td>' . ucwords($data->student_type) . '</td>
+                                <td>' . $data->course . '</td>
+                                <td>' . ($data->year ?? 'N/A'). '</td>
+                                <td>' .($data->batch_year ?? 'N/A') . '</td>
                                 <td>' . Carbon::parse($data->request_date)->format('F j, Y') . '</td>
                                 <td>' . collect($data->items)->pluck('purpose')->unique()->implode(', ') . '</td>
                                 <td>' . $requestBadge . '</td>

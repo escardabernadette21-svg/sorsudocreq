@@ -36,7 +36,7 @@
                                 This request has been <span class="text-uppercase">Cancelled</span>.
                             </div>
                         @elseif ($data->status === 'Completed')
-                            <div class="alert alert-success text-center fw-bold">
+                            <div class="alert alert-success text-center fw-bold"> 
                                 This request has been <span class="text-uppercase">Completed</span>.
                             </div>
                         @else
